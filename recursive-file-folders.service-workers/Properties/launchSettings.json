@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "recursive_file_folders.service_workers": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
