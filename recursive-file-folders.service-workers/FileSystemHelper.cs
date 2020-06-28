@@ -27,8 +27,11 @@ namespace recursive_file_folders.service_workers
             {
                 try
                 {
+                    Func<string, string[]> subFolders = subfolder => 
+                        GetAllFiles(subfolder, patternSearch, initialDepth++, maximumDepth);
+                    
                     var childrenFiles = Directory.GetDirectories(folder)
-                                                 .SelectMany(subFolder => GetAllFiles(subFolder, patternSearch, initialDepth++, maximumDepth));
+                                                 .SelectMany(subFolders);
 
                     return Directory.GetFiles(folder, patternSearch)
                                     .Union(childrenFiles)
