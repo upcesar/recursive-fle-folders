@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp7</TargetFramework>
     <UserSecretsId>dotnet-recursive_file_folders.service_workers-CA7F76B2-5E26-40EC-AF49-D2F374FD578F</UserSecretsId>
     <RootNamespace>recursive_file_folders.service_workers</RootNamespace>
   </PropertyGroup>
