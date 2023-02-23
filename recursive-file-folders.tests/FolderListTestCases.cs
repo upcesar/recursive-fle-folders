@@ -1,8 +1,4 @@
 using recursive_file_folders.service_workers;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Xunit;
 
 namespace recursive_file_folders.tests

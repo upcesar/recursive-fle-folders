@@ -24,6 +24,7 @@ namespace recursive_file_folders.tests
 
             ExpectedFiles = _files.ToArray();
         }
+        
         private DirectoryInfo PrepareRootDirectory()
         {
             var curDir = new DirectoryInfo(Directory.GetCurrentDirectory());
