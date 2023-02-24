@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace recursive_file_folders.service_workers;
+namespace RecursiveFileFolders.ServiceWorker;
 
 public class Program
 {

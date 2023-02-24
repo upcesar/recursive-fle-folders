@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace recursive_file_folders.tests;
+namespace RecursiveFileFolders.Tests;
 
 public static class FileFolderTestConstants
 {

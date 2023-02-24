@@ -1,7 +1,7 @@
-using recursive_file_folders.service_workers;
+using RecursiveFileFolders.ServiceWorker;
 using Xunit;
 
-namespace recursive_file_folders.tests;
+namespace RecursiveFileFolders.Tests;
 
 public class FolderListTestCases : IClassFixture<FileFolderFixture>
 {

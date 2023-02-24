@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace recursive_file_folders.service_workers;
+namespace RecursiveFileFolders.ServiceWorker;
 
 public static class FileSystemHelper
 {

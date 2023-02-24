@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp7</TargetFramework>
     <UserSecretsId>dotnet-recursive_file_folders.service_workers-CA7F76B2-5E26-40EC-AF49-D2F374FD578F</UserSecretsId>
-    <RootNamespace>recursive_file_folders.service_workers</RootNamespace>
+    <RootNamespace>RecursiveFileFolders.ServiceWorker</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

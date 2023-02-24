@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace recursive_file_folders.tests;
+namespace RecursiveFileFolders.Tests;
 
 public class FileFolderFixture : IDisposable
 {

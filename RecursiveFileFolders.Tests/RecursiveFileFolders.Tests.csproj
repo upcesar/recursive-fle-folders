@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp7</TargetFramework>
-    <RootNamespace>recursive_file_folders.tests</RootNamespace>
+    <RootNamespace>RecursiveFileFolders.Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\recursive-file-folders.service-workers\service-workers.csproj" />
+    <ProjectReference Include="..\RecursiveFileFolders.ServiceWorker\RecursiveFileFolders.ServiceWorker.csproj" />
   </ItemGroup>
 
 </Project>

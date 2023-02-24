@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace recursive_file_folders.service_workers;
+namespace RecursiveFileFolders.ServiceWorker;
 
 public class Worker : BackgroundService
 {

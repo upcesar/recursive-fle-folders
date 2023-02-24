@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "service-workers", "recursive-file-folders.service-workers\service-workers.csproj", "{6F2B2602-6944-4C79-947F-A8497A563B32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecursiveFileFolders.ServiceWorker", "RecursiveFileFolders.ServiceWorker\RecursiveFileFolders.ServiceWorker.csproj", "{6F2B2602-6944-4C79-947F-A8497A563B32}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "recursive-file-folders.tests\tests.csproj", "{39FB3C23-BFE5-4C85-8344-FCE1C233E595}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecursiveFileFolders.Tests", "RecursiveFileFolders.Tests\RecursiveFileFolders.Tests.csproj", "{39FB3C23-BFE5-4C85-8344-FCE1C233E595}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

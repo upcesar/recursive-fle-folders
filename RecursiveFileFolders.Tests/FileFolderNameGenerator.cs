@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace recursive_file_folders.tests;
+namespace RecursiveFileFolders.Tests;
 
 public class FileFolderNameGenerator
 {
