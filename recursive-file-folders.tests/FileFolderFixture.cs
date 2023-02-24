@@ -8,6 +8,7 @@ namespace recursive_file_folders.tests;
 public class FileFolderFixture : IDisposable
 {
     private bool _disposedValue;
+    private readonly FileFolderNameGenerator _generator = new();
     public string[] ExpectedFiles { get; private set; }
     public string RootTestDirPath { get; private set; }
 
@@ -34,7 +35,7 @@ public class FileFolderFixture : IDisposable
 
     private void CreateTestFileOnDirectory(DirectoryInfo rootTestDir)
     {
-        foreach (var directory in GetNames(FileFolderTestConstants.TestSubDirectoryName, FileFolderTestConstants.MaxFolderDepth))
+        foreach (var directory in _generator.GetNames(FileFolderTestConstants.TestSubDirectoryName, FileFolderTestConstants.MaxFolderDepth))
         {
             var subDirectoryInfo = rootTestDir.CreateSubdirectory(directory);
             var expectedFiles = CreateExpectedTestFiles(subDirectoryInfo);
@@ -44,20 +45,8 @@ public class FileFolderFixture : IDisposable
 
     private IEnumerable<string> CreateExpectedTestFiles(DirectoryInfo subdir)
     {
-        var files = GetNames("file", ".txt", FileFolderTestConstants.MaxFiles);
+        var files = _generator.GetNames("file", ".txt", FileFolderTestConstants.MaxFiles);
         return files.Select(file => CreateTestFile(subdir.FullName, file));
-    }
-
-    private string Pad(int num, int padLength) => num.ToString($"D{padLength.ToString().Length}");
-
-    private IEnumerable<string> GetNames(string prefix, int length) => GetNames(prefix, string.Empty, length);
-
-    private IEnumerable<string> GetNames(string prefix, string suffix, int length)
-    {
-        for (var i = 1; i <= length; i++)
-        {
-            yield return $"{prefix}-{Pad(i, length)}{suffix}";
-        }
     }
 
     protected virtual void Dispose(bool disposing)
