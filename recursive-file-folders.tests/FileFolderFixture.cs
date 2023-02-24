@@ -8,53 +8,58 @@ namespace recursive_file_folders.tests;
 public class FileFolderFixture : IDisposable
 {
     private bool _disposedValue;
-    private readonly IList<string> _files;
-    
     public string[] ExpectedFiles { get; private set; }
-
     public string RootTestDirPath { get; private set; }
 
     public FileFolderFixture()
     {
-        _files = new List<string>();
         var rootTestDir = PrepareRootDirectory();
-        CreateTestSubdirectory(rootTestDir, FileFolderTestConstants.MaxFolderDepth);
-
-        ExpectedFiles = _files.ToArray();
+        CreateTestFileOnDirectory(rootTestDir);
     }
-    
+
     private DirectoryInfo PrepareRootDirectory()
     {
         var curDir = new DirectoryInfo(FileFolderTestConstants.CurrentDirectory);
         var rootTestDir = curDir.CreateSubdirectory(FileFolderTestConstants.RootDirectoryName);
-
         RootTestDirPath = rootTestDir.FullName;
-
         return rootTestDir;
     }
 
-    private void CreateTestSubdirectory(DirectoryInfo rootTestDir, int maxSubdir)
+    private string CreateTestFile(string directoryName, string fileName)
     {
-        for (var i = 1; i <= maxSubdir; i++)
+        var path = Path.Combine(directoryName, fileName);
+        File.WriteAllText(path, $"Content of {fileName}");
+        return path;
+    }
+
+    private void CreateTestFileOnDirectory(DirectoryInfo rootTestDir)
+    {
+        foreach (var directory in GetNames(FileFolderTestConstants.TestSubDirectoryName, FileFolderTestConstants.MaxFolderDepth))
         {
-            var subdir = rootTestDir.CreateSubdirectory($"subdir-test-{Pad(i, maxSubdir)}");
-            CreateTestFiles(subdir, FileFolderTestConstants.MaxFiles);
+            var subDirectoryInfo = rootTestDir.CreateSubdirectory(directory);
+            var expectedFiles = CreateExpectedTestFiles(subDirectoryInfo);
+            ExpectedFiles = ExpectedFiles?.Union(expectedFiles).ToArray() ?? expectedFiles.ToArray();
         }
     }
 
-    private void CreateTestFiles(DirectoryInfo subdir, int maxFiles)
+    private IEnumerable<string> CreateExpectedTestFiles(DirectoryInfo subdir)
     {
-        for (var i = 1; i <= maxFiles; i++)
-        {
-            var fileNum = Pad(i, maxFiles);
-            var fileName = Path.Combine(subdir.FullName, $"file{fileNum}.txt");
-            File.WriteAllText(fileName, $"Content of file{fileNum}");
-            _files.Add(fileName);
-        }
+        var files = GetNames("file", ".txt", FileFolderTestConstants.MaxFiles);
+        return files.Select(file => CreateTestFile(subdir.FullName, file));
     }
 
     private string Pad(int num, int padLength) => num.ToString($"D{padLength.ToString().Length}");
-    
+
+    private IEnumerable<string> GetNames(string prefix, int length) => GetNames(prefix, string.Empty, length);
+
+    private IEnumerable<string> GetNames(string prefix, string suffix, int length)
+    {
+        for (var i = 1; i <= length; i++)
+        {
+            yield return $"{prefix}-{Pad(i, length)}{suffix}";
+        }
+    }
+
     protected virtual void Dispose(bool disposing)
     {
         if (!_disposedValue)
@@ -62,13 +67,7 @@ public class FileFolderFixture : IDisposable
             if (disposing)
             {
                 // TODO: dispose managed state (managed objects)
-                foreach (var file in ExpectedFiles)
-                    File.Delete(file);                    
-
-                foreach (var dir in Directory.GetDirectories(RootTestDirPath))
-                    Directory.Delete(dir);
-
-                Directory.Delete(RootTestDirPath);
+                Directory.Delete(RootTestDirPath, true);
             }
 
             // TODO: free unmanaged resources (unmanaged objects) and override finalizer
