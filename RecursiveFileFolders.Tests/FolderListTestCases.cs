@@ -12,13 +12,22 @@ public class FolderListTestCases : IClassFixture<FileFolderFixture>
 
     [Fact]
     public void CheckFileListTest_ShouldReturnFileList()
-        => FileSystemHelper.GetAllFiles(_fixture.ValidRootTestDirPath)
-                           .Should()
-                           .Equal(_fixture.ExpectedFiles);
+    {
+        var files = FileSystemHelper.GetAllFiles(_fixture.ValidRootTestDirPath);
+        files.Should().Equal(_fixture.ExpectedFiles);
+    }
 
     [Fact]
     public void CheckFileListTest_ShouldReturnEmptyList()
-        => FileSystemHelper.GetAllFiles(_fixture.InvalidRootTestDirPath)
-                           .Should()
-                           .BeEmpty();
+    {
+        var files = FileSystemHelper.GetAllFiles(_fixture.InvalidRootTestDirPath);
+        files.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void CheckFileListTest_With_ShouldReturnEmptyList()
+    {
+        var files = FileSystemHelper.GetAllFiles(_fixture.ValidRootTestDirPath, _fixture.DepthOneSubFolder);
+        files.Should().HaveCount(_fixture.ExpectedQuantityFilesOneDepth);
+    }
 }
