@@ -1,7 +1,6 @@
 using RecursiveFileFolders.ServiceWorker;
 using FluentAssertions;
 using Xunit;
-using System;
 
 namespace RecursiveFileFolders.Tests;
 
