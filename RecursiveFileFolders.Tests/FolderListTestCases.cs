@@ -1,5 +1,7 @@
 using RecursiveFileFolders.ServiceWorker;
+using FluentAssertions;
 using Xunit;
+using System;
 
 namespace RecursiveFileFolders.Tests;
 
@@ -10,6 +12,14 @@ public class FolderListTestCases : IClassFixture<FileFolderFixture>
     public FolderListTestCases(FileFolderFixture fixture) => _fixture = fixture;
 
     [Fact]
-    public void CheckFileListTest() 
-        => Assert.Equal(FileSystemHelper.GetAllFiles(_fixture.RootTestDirPath), _fixture.ExpectedFiles);
+    public void CheckFileListTest_ShouldReturnFileList()
+        => FileSystemHelper.GetAllFiles(_fixture.RootTestDirPath)
+                           .Should()
+                           .Equal(_fixture.ExpectedFiles);
+
+    [Fact]
+    public void CheckFileListTest_ShouldReturnEmptyList()
+        => FileSystemHelper.GetAllFiles(@$"c:\fakedir-{DateTime.Now.Ticks}")
+                           .Should()
+                           .BeEmpty();
 }
