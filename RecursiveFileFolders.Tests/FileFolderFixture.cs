@@ -10,7 +10,8 @@ public class FileFolderFixture : IDisposable
     private bool _disposedValue;
     private readonly FileFolderNameGenerator _generator = new();
     public string[] ExpectedFiles { get; private set; }
-    public string RootTestDirPath { get; private set; }
+    public string ValidRootTestDirPath { get; private set; }
+    public string InvalidRootTestDirPath => @$"c:\fakedir-{DateTime.Now.Ticks}";
 
     public FileFolderFixture()
     {
@@ -22,7 +23,7 @@ public class FileFolderFixture : IDisposable
     {
         var curDir = new DirectoryInfo(FileFolderTestConstants.CurrentDirectory);
         var rootTestDir = curDir.CreateSubdirectory(FileFolderTestConstants.RootDirectoryName);
-        RootTestDirPath = rootTestDir.FullName;
+        ValidRootTestDirPath = rootTestDir.FullName;
         return rootTestDir;
     }
 
@@ -56,7 +57,7 @@ public class FileFolderFixture : IDisposable
             if (disposing)
             {
                 // TODO: dispose managed state (managed objects)
-                Directory.Delete(RootTestDirPath, true);
+                Directory.Delete(ValidRootTestDirPath, true);
             }
 
             // TODO: free unmanaged resources (unmanaged objects) and override finalizer

@@ -13,13 +13,13 @@ public class FolderListTestCases : IClassFixture<FileFolderFixture>
 
     [Fact]
     public void CheckFileListTest_ShouldReturnFileList()
-        => FileSystemHelper.GetAllFiles(_fixture.RootTestDirPath)
+        => FileSystemHelper.GetAllFiles(_fixture.ValidRootTestDirPath)
                            .Should()
                            .Equal(_fixture.ExpectedFiles);
 
     [Fact]
     public void CheckFileListTest_ShouldReturnEmptyList()
-        => FileSystemHelper.GetAllFiles(@$"c:\fakedir-{DateTime.Now.Ticks}")
+        => FileSystemHelper.GetAllFiles(_fixture.InvalidRootTestDirPath)
                            .Should()
                            .BeEmpty();
 }
