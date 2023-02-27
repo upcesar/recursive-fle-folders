@@ -18,16 +18,23 @@ public class FolderListTestCases : IClassFixture<FileFolderFixture>
     }
 
     [Fact]
-    public void CheckFileListTest_ShouldReturnEmptyList()
+    public void CheckInvalidRootFolderTest_ShouldReturnEmptyList()
     {
         var files = FileSystemHelper.GetAllFiles(_fixture.InvalidRootTestDirPath);
         files.Should().BeEmpty();
     }
 
     [Fact]
-    public void CheckFileListTest_WithOneDepth_ShouldReturnFourItems()
+    public void CheckFileListWithOneDepthTest_ShouldReturnFourElements()
     {
         var files = FileSystemHelper.GetAllFiles(_fixture.ValidRootTestDirPath, _fixture.DepthOneSubFolder);
         files.Should().HaveCount(_fixture.ExpectedQuantityFilesOneDepth);
+    }
+
+    [Fact]
+    public void CheckFileListWithFiltersTest_ShouldReturnEmpty()
+    {
+        var files = FileSystemHelper.GetAllFiles(_fixture.ValidRootTestDirPath, _fixture.InvalidFilePattern);
+        files.Should().BeEmpty();
     }
 }

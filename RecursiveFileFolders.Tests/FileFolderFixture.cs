@@ -12,6 +12,7 @@ public class FileFolderFixture : IDisposable
     public string[] ExpectedFiles { get; private set; }
     public string ValidRootTestDirPath { get; private set; }
     public string InvalidRootTestDirPath => @$"c:\fakedir-{DateTime.Now.Ticks}";
+    public string InvalidFilePattern => FileFolderTestConstants.BatchFilesPattern;
     public int DepthOneSubFolder => 1;
     public int ExpectedQuantityFilesOneDepth => 4;
 

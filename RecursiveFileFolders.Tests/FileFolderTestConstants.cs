@@ -8,5 +8,6 @@ public static class FileFolderTestConstants
     public const int MaxFiles = 4;
     public const string RootDirectoryName = "testRootDir";
     public const string TestSubDirectoryName = "subdir-test";
+    public const string BatchFilesPattern = "*.bat";
     public static string CurrentDirectory => Directory.GetCurrentDirectory();
 }
