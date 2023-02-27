@@ -25,7 +25,7 @@ public class FolderListTestCases : IClassFixture<FileFolderFixture>
     }
 
     [Fact]
-    public void CheckFileListTest_With_ShouldReturnEmptyList()
+    public void CheckFileListTest_WithOneDepth_ShouldReturnFourItems()
     {
         var files = FileSystemHelper.GetAllFiles(_fixture.ValidRootTestDirPath, _fixture.DepthOneSubFolder);
         files.Should().HaveCount(_fixture.ExpectedQuantityFilesOneDepth);
