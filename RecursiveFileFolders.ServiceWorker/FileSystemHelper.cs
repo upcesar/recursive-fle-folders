@@ -43,7 +43,7 @@ public static class FileSystemHelper
                 return new string[] { $"{folder} -> Unauthorized" };
             }
 
-            catch (Exception) { }
+            catch (Exception ex) { return new string[] { $"{folder} -> General failure {ex.Message} at {ex.StackTrace}" }; }
         }
 
         return new string[] { };
